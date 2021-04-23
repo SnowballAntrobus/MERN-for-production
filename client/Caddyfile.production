@@ -1,0 +1,9 @@
+mern.mysite.com:443 {
+    tls email_address_used_to_purchase_domain@icloud.com
+    root * /srv
+    route {
+        reverse_proxy /api* api-server:5000
+        try_files {path} {path}/ /index.html
+        file_server
+    }
+}

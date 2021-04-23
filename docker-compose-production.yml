@@ -3,15 +3,15 @@ services:
   react-app:
     image: react-app-production
     restart: unless-stopped
-    stdin_open: true
     ports: 
       - "80:80"
       - "443:443"
     networks:
       - mern-app
   api-server:
-    image: api-server-production
+    image: api-server
     restart: unless-stopped
+    env_file: ./server/config/${ENV}.env
     ports:
       - "5000:5000"
     networks:

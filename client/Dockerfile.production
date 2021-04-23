@@ -1,4 +1,5 @@
-FROM node:14-slim
+# Stage 1: dependencies + build app
+FROM node:14-slim AS builder
 
 WORKDIR /usr/src/app
 
@@ -9,6 +10,19 @@ RUN yarn install
 
 COPY . .
 
+ARG BASE_URL
+ENV REACT_APP_BASE_URL=${BASE_URL}
+
 RUN yarn build
 
-### Copy into secondary Caddy stage
+# Stage 2:
+FROM caddy:2.1.1-alpine
+
+ARG CADDYFILE
+COPY ${CADDYFILE} /etc/Caddyfile
+
+COPY --from=builder /usr/src/app/build/ /srv
+
+EXPOSE 80
+
+EXPOSE 443

@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+const baseURL = process.env.REACT_APP_BASE_URL
+
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL
 })
 
 export const insertItem = payload => api.post(`/item`, payload)
