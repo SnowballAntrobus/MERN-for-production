@@ -21,3 +21,6 @@ build-production:
 
 run-production:
 	ENV=production docker-compose -f docker-compose-production.yml up
+
+stop:
+	docker-compose down
