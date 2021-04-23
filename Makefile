@@ -1,4 +1,4 @@
-build:
+build-dev:
 	cd server && $(MAKE) build
 	cd client && $(MAKE) build
 
