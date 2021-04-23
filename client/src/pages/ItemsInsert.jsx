@@ -92,7 +92,7 @@ class ItemsInsert extends Component {
                 <InputText
                     type="text"
                     value={brand}
-                    onChange={this.handleChangeInputType}
+                    onChange={this.handleChangeInputBrand}
                 />
 
                 <Label>Season: </Label>
