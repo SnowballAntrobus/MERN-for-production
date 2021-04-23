@@ -7,12 +7,18 @@ services:
       - "3000:3000"
     networks:
       - mern-app
+    volumes: 
+      - ./client/:/usr/src/app
+      - /usr/src/app/node_modules
   api-server:
     image: api-server
     ports:
       - "5000:5000"
     networks:
       - mern-app
+    volumes: 
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
     depends_on:
       - mongo
   mongo:

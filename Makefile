@@ -2,7 +2,7 @@ build:
 	cd server && $(MAKE) build
 	cd client && $(MAKE) build
 
-run:
+run-dev:
 	docker-compose up
 
 stop:
