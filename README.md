@@ -1,3 +1,3 @@
-# Cloth-Web
+# MERN-WEB-Production
 
-Local Backend working and tested with postman/compass
+A template of sorts I made as a starting point for my MERN app projects. It's set up for Docker, MongoDB Atlas, and Digital Ocean.
