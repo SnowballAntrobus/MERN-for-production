@@ -24,3 +24,20 @@ run-production:
 
 stop:
 	docker-compose down
+
+# Remote
+
+SSH_STRING:=root@45.55.62.139
+
+ssh:
+	ssh $(SSH_STRING)
+
+
+# apt install make
+
+copy-files:
+	scp -r ./* $(SSH_STRING):/root/
+
+# when you add firewall rule, have to add SSH on port 22 or it will stop working
+
+# run challenge with cloudflare on flexible, then bump to full
