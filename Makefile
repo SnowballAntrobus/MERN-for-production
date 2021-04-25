@@ -20,7 +20,7 @@ build-production:
 	cd server && $(MAKE) build
 
 run-production:
-	ENV=production docker-compose -f docker-compose-production.yml up
+	ENV=production docker-compose -f docker-compose-production.yml up -d
 
 stop:
 	docker-compose down
