@@ -2,12 +2,18 @@ import React from "react";
 import styled from "styled-components";
 
 import Logo from "./Logo";
-import SignOutButton from '../SignOut';
+import SignOutButton from "../SignOut";
 import { Link } from "react-router-dom";
-import * as ROUTES from '../../constants/routes';
+import * as ROUTES from "../../constants/routes";
 
-const NavBar = ({ authUser }) => (
-  <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+import { AuthUserContext } from "../Session";
+
+const NavBar = () => (
+  <div>
+    <AuthUserContext.Consumer>
+      {(authUser) => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
+    </AuthUserContext.Consumer>
+  </div>
 );
 
 const NavigationNonAuth = () => (

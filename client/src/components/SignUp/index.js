@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { compose } from 'recompose';
- 
-import { withFirebase } from '../Firebase';
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
-import * as ROUTES from '../../constants/routes';
- 
+import { withFirebase } from "../Firebase";
+
+import * as ROUTES from "../../constants/routes";
+
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
@@ -14,51 +14,43 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  username: '',
-  email: '',
-  password: '',
+  username: "",
+  email: "",
+  password: "",
   error: null,
 };
- 
+
 class SignUpFormBase extends Component {
   constructor(props) {
     super(props);
 
     this.state = { ...INITIAL_STATE };
   }
- 
-  onSubmit = event => {
+
+  onSubmit = (event) => {
     const { username, email, password } = this.state;
- 
+
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, password)
-      .then(authUser => {
+      .then((authUser) => {
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
-      .catch(error => {
+      .catch((error) => {
         this.setState({ error });
       });
- 
+
     event.preventDefault();
-  }
- 
-  onChange = event => {
+  };
+
+  onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
- 
-  render() {
-    const {
-      username,
-      email,
-      password,
-      error,
-    } = this.state;
 
-    const isInvalid =
-      password === '' ||
-      email === '' ||
-      username === '';
+  render() {
+    const { username, email, password, error } = this.state;
+
+    const isInvalid = password === "" || email === "" || username === "";
 
     return (
       <form onSubmit={this.onSubmit}>
@@ -83,22 +75,24 @@ class SignUpFormBase extends Component {
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">Sign Up</button>
+        <button disabled={isInvalid} type="submit">
+          Sign Up
+        </button>
 
         {error && <p>{error.message}</p>}
       </form>
     );
   }
 }
- 
+
 const SignUpLink = () => (
   <p>
     Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
   </p>
 );
 
-const SignUpForm = compose(withRouter,withFirebase)(SignUpFormBase);
- 
+const SignUpForm = compose(withRouter, withFirebase)(SignUpFormBase);
+
 export default SignUpPage;
- 
+
 export { SignUpForm, SignUpLink };
