@@ -106,4 +106,4 @@ dist
 #Private
 production.env
 local.env
-dev.env
+client/config/dev.env
