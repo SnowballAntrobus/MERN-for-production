@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import api from "../../api";
 
+import { withAuthorization } from '../Session';
+
 import styled from "styled-components";
 
 const Title = styled.h1.attrs({
@@ -109,4 +111,6 @@ class ItemsInsert extends Component {
   }
 }
 
-export default ItemsInsert;
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(ItemsInsert);
