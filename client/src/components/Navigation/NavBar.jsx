@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import Logo from "./Logo";
 import Links from "./Links";
+import SignOutButton from '../SignOut';
 
 const Container = styled.div.attrs({
   className: "container",
@@ -21,6 +22,7 @@ class NavBar extends Component {
         <Nav>
           <Logo />
           <Links />
+          <SignOutButton />
         </Nav>
       </Container>
     );
