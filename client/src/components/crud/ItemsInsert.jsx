@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from '../api'
+import api from '../../api'
 
 import styled from 'styled-components'
 
@@ -35,12 +35,11 @@ const CancelButton = styled.a.attrs({
     margin: 15px 15px 15px 5px;
 `
 
-class ItemsUpdate extends Component {
+class ItemsInsert extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
             type: '',
             brand: '',
             season: '',
@@ -62,28 +61,17 @@ class ItemsUpdate extends Component {
         this.setState({ season })
     }
 
-    handleUpdateItem = async () => {
-        const { id, type, brand, season } = this.state
+    handleIncludeItem = async () => {
+        const { type, brand, season } = this.state
         const payload = { type, brand, season }
 
-        await api.updateItemById(id, payload).then(res => {
-            window.alert(`Item updated successfully`)
+        await api.insertItem(payload).then(res => {
+            window.alert(`Item inserted successfully`)
             this.setState({
                 type: '',
                 brand: '',
                 season: '',
             })
-        })
-    }
-
-    componentDidMount = async () => {
-        const { id } = this.state
-        const item = await api.getItemById(id)
-
-        this.setState({
-            type: item.data.data.type,
-            brand: item.data.data.brand,
-            season: item.data.data.season,
         })
     }
 
@@ -114,11 +102,11 @@ class ItemsUpdate extends Component {
                     onChange={this.handleChangeInputSeason}
                 />
 
-                <Button onClick={this.handleUpdateItem}>Update Item</Button>
+                <Button onClick={this.handleIncludeItem}>Add Item</Button>
                 <CancelButton href={'/items/list'}>Cancel</CancelButton>
             </Wrapper>
         )
     }
 }
 
-export default ItemsUpdate
+export default ItemsInsert

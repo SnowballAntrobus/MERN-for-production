@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-import * as ROUTES from '../constants/routes';
+import * as ROUTES from '../../constants/routes';
 
 const Collapse = styled.div.attrs({
     className: 'collpase navbar-collapse',

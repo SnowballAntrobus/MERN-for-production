@@ -2,18 +2,18 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import NavBar from '../components/Navigation/NavBar'
-import LandingPage from '../Landing';
-import SignUpPage from '../SignUp';
-import SignInPage from '../SignIn';
-import PasswordForgetPage from '../PasswordForget';
-import HomePage from '../Home';
-import AccountPage from '../Account';
-import AdminPage from '../Admin';
+import LandingPage from '../components/Landing';
+import SignUpPage from '../components/SignUp';
+import SignInPage from '../components/SignIn';
+import PasswordForgetPage from '../components/PasswordForget';
+import HomePage from '../components/Home';
+import AccountPage from '../components/Account';
+import AdminPage from '../components/Admin';
 
 
-import { ItemsList, ItemsInsert, ItemsUpdate } from '../pages'
+import { ItemsList, ItemsInsert, ItemsUpdate } from '../components/crud'
 
-import * as ROUTES from '../components/constants/routes';
+import * as ROUTES from '../constants/routes';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
