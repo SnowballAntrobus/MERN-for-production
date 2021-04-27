@@ -106,3 +106,4 @@ dist
 #Private
 production.env
 local.env
+dev.env
