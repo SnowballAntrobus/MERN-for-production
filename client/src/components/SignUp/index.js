@@ -13,8 +13,7 @@ const SignUpPage = () => (
 const INITIAL_STATE = {
   username: '',
   email: '',
-  passwordOne: '',
-  passwordTwo: '',
+  password: '',
   error: null,
 };
  
@@ -64,7 +63,7 @@ class SignUpForm extends Component {
         />
         <input
           name="password"
-          value={passwordOne}
+          value={password}
           onChange={this.onChange}
           type="password"
           placeholder="Password"

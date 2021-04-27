@@ -1,4 +1,4 @@
-import app from 'firebase/app';
+import firebase from 'firebase/app'
 import 'firebase/auth';
 
 const firebaseConfig = {
@@ -12,9 +12,9 @@ const firebaseConfig = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(firebaseConfig);
+    firebase.initializeApp(firebaseConfig);
 
-    this.auth = app.auth();
+    this.auth = firebase.auth();
   }
 
   // *** Auth API ***
