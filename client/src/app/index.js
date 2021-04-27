@@ -12,12 +12,11 @@ import AdminPage from "../components/Admin";
 import { ItemsList, ItemsInsert, ItemsUpdate } from "../components/crud";
 
 import * as ROUTES from "../constants/routes";
-import { withAuthentication } from "../Session";
+import { withAuthentication } from "../components/Session";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => (
-  <AuthUserContext.Provider value={this.state.authUser}>
     <Router>
       <NavBar />
       <Switch>
@@ -33,7 +32,6 @@ const App = () => (
         <Route path={ROUTES.ITEMS_UPDATE} exact component={ItemsUpdate} />
       </Switch>
     </Router>
-  </AuthUserContext.Provider>
 );
 
 export default withAuthentication(App);
