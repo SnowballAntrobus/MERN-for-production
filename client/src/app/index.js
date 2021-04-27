@@ -12,7 +12,7 @@ import AdminPage from "../components/Admin";
 import { ItemsList, ItemsInsert, ItemsUpdate } from "../components/crud";
 
 import * as ROUTES from "../constants/routes";
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../components/Firebase';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
