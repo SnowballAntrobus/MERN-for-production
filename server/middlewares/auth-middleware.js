@@ -1,6 +1,6 @@
 const admin = require('../services/authService');
 
-const getAuthToken = (req, res, next) => {
+getAuthToken = (req, res, next) => {
   if (
     req.headers.authorization &&
     req.headers.authorization.split(' ')[0] === 'Bearer'
@@ -12,7 +12,7 @@ const getAuthToken = (req, res, next) => {
   next();
 };
 
-const checkIfAuthenticated = (req, res, next) => {
+checkIfAuthenticated = (req, res, next) => {
  getAuthToken(req, res, async () => {
     try {
       const { authToken } = req;

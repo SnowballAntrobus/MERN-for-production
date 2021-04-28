@@ -1,14 +1,14 @@
 const express = require("express");
 
-const checkIfAuthenticated = require("../middlewares/auth-middleware")
+const auth = require("../middlewares/auth-middleware")
 
 const ItemCtrl = require("../controllers/item-ctrl");
 
 const router = express.Router();
 
-router.post("/item", checkIfAuthenticated, async (_, res) => {ItemCtrl.createItem});
-router.put("/item/:id", checkIfAuthenticated, async (_, res) => {ItemCtrl.updateItem});
-router.delete("/item/:id", checkIfAuthenticated, async (_, res) => {ItemCtrl.deleteItem});
+router.post("/item", auth.checkIfAuthenticated, ItemCtrl.createItem);
+router.put("/item/:id", auth.checkIfAuthenticated, ItemCtrl.updateItem);
+router.delete("/item/:id", auth.checkIfAuthenticated, ItemCtrl.deleteItem);
 router.get("/item/:id", ItemCtrl.getItemById);
 router.get("/items", ItemCtrl.getItems);
 
