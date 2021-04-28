@@ -1,4 +1,4 @@
-const admin = require('./firebase-service');
+const admin = require('../services/authService');
 
 const getAuthToken = (req, res, next) => {
   if (
@@ -12,7 +12,7 @@ const getAuthToken = (req, res, next) => {
   next();
 };
 
-export const checkIfAuthenticated = (req, res, next) => {
+const checkIfAuthenticated = (req, res, next) => {
  getAuthToken(req, res, async () => {
     try {
       const { authToken } = req;
