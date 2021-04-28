@@ -1,6 +1,6 @@
 const express = require("express");
 
-import {checkIfAuthenticated} from '../middlewares/auth-middleware';
+const checkIfAuthenticated = require("../middlewares/auth-middleware")
 
 const ItemCtrl = require("../controllers/item-ctrl");
 

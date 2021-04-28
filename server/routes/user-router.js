@@ -1,12 +1,9 @@
-const express = require("express");
+const createUser = require('../controllers/auth-ctrl');
 
-const UserCtrl = require("../controllers/user-ctrl");
+const express = require("express");
 
 const router = express.Router();
 
-router.post("/user", UserCtrl.createUser);
-router.delete("/user/:id", UserCtrl.deleteUser);
-router.get("/user/:id", UserCtrl.getUserById);
-router.get("/users", UserCtrl.getUsers);
+router.post('/auth/signup', createUser);
 
 module.exports = router;

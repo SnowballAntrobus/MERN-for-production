@@ -11,4 +11,6 @@ COPY . .
 
 EXPOSE 5000
 
+RUN export GOOGLE_APPLICATION_CREDENTIALS='../credentials/dev-credentials.json'
+
 CMD [ "yarn", "start" ]

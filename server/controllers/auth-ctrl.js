@@ -1,6 +1,6 @@
-import admin from './firebase-service';
+const admin = require('../services/authService');
 
-export const createUser = async (req, res) => {
+const createUser = async (req, res) => {
 const {
       email,
       phoneNumber,
@@ -20,3 +20,7 @@ const {
 
     return res.send(user);
 }
+
+module.exports = {
+  createUser
+};

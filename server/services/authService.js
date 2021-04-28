@@ -1,8 +1,8 @@
-import * as admin from 'firebase-admin';
+const admin = require('firebase-admin');
 
-admin.initializeApp(
-  credential: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
   //databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
-);
+});
 
-export default admin
+module.exports = admin;

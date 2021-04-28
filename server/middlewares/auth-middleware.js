@@ -1,5 +1,4 @@
-import admin from './firebase-service';
-
+const admin = require('./firebase-service');
 
 const getAuthToken = (req, res, next) => {
   if (
@@ -12,7 +11,6 @@ const getAuthToken = (req, res, next) => {
   }
   next();
 };
-
 
 export const checkIfAuthenticated = (req, res, next) => {
  getAuthToken(req, res, async () => {
@@ -29,4 +27,8 @@ export const checkIfAuthenticated = (req, res, next) => {
         .send({ error: 'You are not authorized to make this request' });
     }
   });
+};
+
+module.exports = {
+  checkIfAuthenticated,
 };
