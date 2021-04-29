@@ -10,11 +10,15 @@ export const insertItem = async (firebase, payload) => {
     const token = await firebase.auth.currentUser.getIdToken();
     return api.post('/item', payload, {headers: { authorization: `Bearer ${token}` } });
 }
-
-// export const insertItem = (payload) => api.post(`/item`, payload);
+export const updateItemById = async (firebase, id, payload) => {
+  const token = await firebase.auth.currentUser.getIdToken();
+  return api.put(`/item/${id}`, payload, {headers: { authorization: `Bearer ${token}` } });
+}
+export const deleteItemById = async (firebase, id) => {
+  const token = await firebase.auth.currentUser.getIdToken();
+  return api.delete(`/item/${id}`, {headers: { authorization: `Bearer ${token}` } });
+}
 export const getAllItems = () => api.get(`/items`);
-export const updateItemById = (id, payload) => api.put(`/item/${id}`, payload);
-export const deleteItemById = (id) => api.delete(`/item/${id}`);
 export const getItemById = (id) => api.get(`/item/${id}`);
 
 const apis = {

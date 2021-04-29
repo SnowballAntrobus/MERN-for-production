@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import api from "../../api";
+import { compose } from 'recompose'
+
+import { withAuthorization } from '../Session';
+import { withFirebase } from '../Firebase'
 
 import styled from "styled-components";
 
@@ -66,7 +70,7 @@ class ItemsUpdate extends Component {
     const { id, type, brand, season } = this.state;
     const payload = { type, brand, season };
 
-    await api.updateItemById(id, payload).then((res) => {
+    await api.updateItemById(this.props.firebase, id, payload).then((res) => {
       window.alert(`Item updated successfully`);
       this.setState({
         type: "",
@@ -121,4 +125,6 @@ class ItemsUpdate extends Component {
   }
 }
 
-export default ItemsUpdate;
+const condition = authUser => !!authUser;
+
+export default compose(withFirebase ,withAuthorization(condition))(ItemsUpdate);

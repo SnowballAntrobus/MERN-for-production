@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ReactTable from "react-table-6";
 import api from "../../api";
 
+import { withFirebase } from '../Firebase'
+
 import styled from "styled-components";
 
 import "react-table-6/react-table.css";
@@ -41,7 +43,7 @@ class DeleteItem extends Component {
         `Do tou want to delete the item ${this.props.id} permanently?`
       )
     ) {
-      api.deleteItemById(this.props.id);
+      api.deleteItemById(this.props.firebase, this.props.id);
       window.location.reload();
     }
   };
@@ -103,7 +105,7 @@ class ItemsList extends Component {
         Cell: function (props) {
           return (
             <span>
-              <DeleteItem id={props.original._id} />
+              <DeleteItem id={props.original._id} firebase={props.firebase} />
             </span>
           );
         },
@@ -143,4 +145,4 @@ class ItemsList extends Component {
   }
 }
 
-export default ItemsList;
+export default withFirebase(ItemsList);
