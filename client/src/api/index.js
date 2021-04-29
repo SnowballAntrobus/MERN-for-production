@@ -6,7 +6,12 @@ const api = axios.create({
   baseURL,
 });
 
-export const insertItem = (payload) => api.post(`/item`, payload);
+export const insertItem = async (firebase, payload) => {
+    const token = await firebase.auth.currentUser.getIdToken();
+    return api.post('/item', payload, {headers: { authorization: `Bearer ${token}` } });
+}
+
+// export const insertItem = (payload) => api.post(`/item`, payload);
 export const getAllItems = () => api.get(`/items`);
 export const updateItemById = (id, payload) => api.put(`/item/${id}`, payload);
 export const deleteItemById = (id) => api.delete(`/item/${id}`);

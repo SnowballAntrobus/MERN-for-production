@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import api from "../../api";
+import { compose } from 'recompose'
 
 import { withAuthorization } from '../Session';
+import { withFirebase } from '../Firebase'
 
 import styled from "styled-components";
 
@@ -67,7 +69,7 @@ class ItemsInsert extends Component {
     const { type, brand, season } = this.state;
     const payload = { type, brand, season };
 
-    await api.insertItem(payload).then((res) => {
+    await api.insertItem(this.props.firebase, payload).then((res) => {
       window.alert(`Item inserted successfully`);
       this.setState({
         type: "",
@@ -113,4 +115,4 @@ class ItemsInsert extends Component {
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(ItemsInsert);
+export default compose(withFirebase ,withAuthorization(condition))(ItemsInsert);
