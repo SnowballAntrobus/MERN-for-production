@@ -1,13 +1,15 @@
-const express = require('express')
+const express = require("express");
 
-const ItemCtrl = require('../controllers/item-ctrl')
+const auth = require("../middlewares/auth-middleware");
 
-const router = express.Router()
+const ItemCtrl = require("../controllers/item-ctrl");
 
-router.post('/item', ItemCtrl.createItem)
-router.put('/item/:id', ItemCtrl.updateItem)
-router.delete('/item/:id', ItemCtrl.deleteItem)
-router.get('/item/:id', ItemCtrl.getItemById)
-router.get('/items', ItemCtrl.getItems)
+const router = express.Router();
 
-module.exports = router
+router.post("/item", auth.checkIfAuthenticated, ItemCtrl.createItem);
+router.put("/item/:id", auth.checkIfAuthenticated, ItemCtrl.updateItem);
+router.delete("/item/:id", auth.checkIfAdmin, ItemCtrl.deleteItem);
+router.get("/item/:id", ItemCtrl.getItemById);
+router.get("/items", ItemCtrl.getItems);
+
+module.exports = router;
