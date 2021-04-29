@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import api from "../../api";
-import { compose } from 'recompose'
+import {withRouter } from "react-router-dom";
+import { compose } from 'recompose';
 
 import { withAuthorization } from '../Session';
 import { withFirebase } from '../Firebase'
+
+import * as ROUTES from "../../constants/routes";
 
 import styled from "styled-components";
 
@@ -78,6 +81,7 @@ class ItemsUpdate extends Component {
         season: "",
       });
     });
+    this.props.history.push(ROUTES.ITEMS_LIST);
   };
 
   componentDidMount = async () => {
@@ -95,7 +99,7 @@ class ItemsUpdate extends Component {
     const { type, brand, season } = this.state;
     return (
       <Wrapper>
-        <Title>Create Item</Title>
+        <Title>Update Item</Title>
 
         <Label>Type: </Label>
         <InputText
@@ -127,4 +131,4 @@ class ItemsUpdate extends Component {
 
 const condition = authUser => !!authUser;
 
-export default compose(withFirebase ,withAuthorization(condition))(ItemsUpdate);
+export default compose(withRouter, withFirebase, withAuthorization(condition))(ItemsUpdate);
