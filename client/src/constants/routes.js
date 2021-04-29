@@ -8,3 +8,4 @@ export const PASSWORD_FORGET = "/pw-forget";
 export const ITEMS_LIST = "/items/list";
 export const ITEMS_CREATE = "/items/create";
 export const ITEMS_UPDATE = "/items/update/:id";
+export const ITEMS_GRID = "/items/grid";

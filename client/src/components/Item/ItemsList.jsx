@@ -2,23 +2,7 @@ import React, { Component } from "react";
 import ReactTable from "react-table-6";
 import api from "../../api";
 
-import styled from "styled-components";
-
 import "react-table-6/react-table.css";
-
-const Wrapper = styled.div`
-  padding: 0 40px 40px 40px;
-`;
-
-const Update = styled.div`
-  color: #ef9b0f;
-  cursor: pointer;
-`;
-
-const Delete = styled.div`
-  color: #ff0000;
-  cursor: pointer;
-`;
 
 class UpdateItem extends Component {
   updateUser = (event) => {
@@ -28,7 +12,7 @@ class UpdateItem extends Component {
   };
 
   render() {
-    return <Update onClick={this.updateUser}>Update</Update>;
+    return <button onClick={this.updateUser}>Update</button>;
   }
 }
 
@@ -47,7 +31,7 @@ class DeleteItem extends Component {
   };
 
   render() {
-    return <Delete onClick={this.deleteUser}>Delete</Delete>;
+    return <button onClick={this.deleteUser}>Delete</button>;
   }
 }
 
@@ -127,7 +111,7 @@ class ItemsList extends Component {
     }
 
     return (
-      <Wrapper>
+      <div>
         {showTable && (
           <ReactTable
             data={items}
@@ -138,7 +122,7 @@ class ItemsList extends Component {
             minRows={0}
           />
         )}
-      </Wrapper>
+      </div>
     );
   }
 }

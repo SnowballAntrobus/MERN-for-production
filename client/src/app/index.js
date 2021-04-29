@@ -9,12 +9,10 @@ import PasswordForgetPage from "../components/PasswordForget";
 import HomePage from "../components/Home";
 import AccountPage from "../components/Account";
 import AdminPage from "../components/Admin";
-import { ItemsList, ItemsInsert, ItemsUpdate } from "../components/Item";
+import { ItemsList, ItemsInsert, ItemsUpdate, ItemsGrid } from "../components/Item";
 
 import * as ROUTES from "../constants/routes";
 import { withAuthentication } from "../components/Session";
-
-import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => (
   <Router>
@@ -28,6 +26,7 @@ const App = () => (
       <Route path={ROUTES.ACCOUNT} component={AccountPage} />
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.ITEMS_LIST} exact component={ItemsList} />
+      <Route path={ROUTES.ITEMS_GRID} exact component={ItemsGrid} />
       <Route path={ROUTES.ITEMS_CREATE} exact component={ItemsInsert} />
       <Route path={ROUTES.ITEMS_UPDATE} exact component={ItemsUpdate} />
     </Switch>

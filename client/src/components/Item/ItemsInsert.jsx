@@ -5,40 +5,6 @@ import { compose } from "recompose";
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 
-import styled from "styled-components";
-
-const Title = styled.h1.attrs({
-  classType: "h1",
-})``;
-
-const Wrapper = styled.div.attrs({
-  classType: "form-group",
-})`
-  margin: 0 30px;
-`;
-
-const Label = styled.label`
-  margin: 5px;
-`;
-
-const InputText = styled.input.attrs({
-  classType: "form-control",
-})`
-  margin: 5px;
-`;
-
-const Button = styled.button.attrs({
-  classType: `btn btn-primary`,
-})`
-  margin: 15px 15px 15px 5px;
-`;
-
-const CancelButton = styled.a.attrs({
-  classType: `btn btn-danger`,
-})`
-  margin: 15px 15px 15px 5px;
-`;
-
 class ItemsInsert extends Component {
   constructor(props) {
     super(props);
@@ -82,33 +48,33 @@ class ItemsInsert extends Component {
   render() {
     const { type, brand, season } = this.state;
     return (
-      <Wrapper>
-        <Title>Create Item</Title>
+      <div>
+        <h1>Create Item</h1>
 
-        <Label>Type: </Label>
-        <InputText
+        <label>Type: </label>
+        <input
           type="text"
           value={type}
           onChange={this.handleChangeInputType}
         />
 
-        <Label>Brand: </Label>
-        <InputText
+        <label>Brand: </label>
+        <input
           type="text"
           value={brand}
           onChange={this.handleChangeInputBrand}
         />
 
-        <Label>Season: </Label>
-        <InputText
+        <label>Season: </label>
+        <input
           type="text"
           value={season}
           onChange={this.handleChangeInputSeason}
         />
 
-        <Button onClick={this.handleIncludeItem}>Add Item</Button>
-        <CancelButton href={"/items/list"}>Cancel</CancelButton>
-      </Wrapper>
+        <button onClick={this.handleIncludeItem}>Add Item</button>
+        <a href={"/items/list"}>Cancel</a>
+      </div>
     );
   }
 }
