@@ -1,13 +1,13 @@
-import admin from '../services/authService';
+import admin from "../services/authService";
 
-makeUserAdmin = async(req, res) => {
-    const {userId} = req.body;
+makeUserAdmin = async (req, res) => {
+  const { userId } = req.body;
 
-    await admin.auth().setCustomUserClaims(userId, {admin: true});
+  await admin.auth().setCustomUserClaims(userId, { admin: true });
 
-    return res.send({message: 'Success'})
+  return res.send({ message: "Success" });
 };
 
 module.exports = {
-    makeUserAdmin
-  };
+  makeUserAdmin,
+};

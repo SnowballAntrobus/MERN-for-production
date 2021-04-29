@@ -9,7 +9,7 @@ import PasswordForgetPage from "../components/PasswordForget";
 import HomePage from "../components/Home";
 import AccountPage from "../components/Account";
 import AdminPage from "../components/Admin";
-import { ItemsList, ItemsInsert, ItemsUpdate } from "../components/crud";
+import { ItemsList, ItemsInsert, ItemsUpdate } from "../components/Item";
 
 import * as ROUTES from "../constants/routes";
 import { withAuthentication } from "../components/Session";
@@ -17,21 +17,21 @@ import { withAuthentication } from "../components/Session";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => (
-    <Router>
-      <NavBar />
-      <Switch>
-        <Route exact path={ROUTES.LANDING} component={LandingPage} />
-        <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-        <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-        <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
-        <Route path={ROUTES.HOME} component={HomePage} />
-        <Route path={ROUTES.ACCOUNT} component={AccountPage} />
-        <Route path={ROUTES.ADMIN} component={AdminPage} />
-        <Route path={ROUTES.ITEMS_LIST} exact component={ItemsList} />
-        <Route path={ROUTES.ITEMS_CREATE} exact component={ItemsInsert} />
-        <Route path={ROUTES.ITEMS_UPDATE} exact component={ItemsUpdate} />
-      </Switch>
-    </Router>
+  <Router>
+    <NavBar />
+    <Switch>
+      <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
+      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route path={ROUTES.PASSWORD_FORGET} component={PasswordForgetPage} />
+      <Route path={ROUTES.HOME} component={HomePage} />
+      <Route path={ROUTES.ACCOUNT} component={AccountPage} />
+      <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route path={ROUTES.ITEMS_LIST} exact component={ItemsList} />
+      <Route path={ROUTES.ITEMS_CREATE} exact component={ItemsInsert} />
+      <Route path={ROUTES.ITEMS_UPDATE} exact component={ItemsUpdate} />
+    </Switch>
+  </Router>
 );
 
 export default withAuthentication(App);

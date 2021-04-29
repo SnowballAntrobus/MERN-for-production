@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import api from "../../api";
-import { compose } from 'recompose'
+import { compose } from "recompose";
 
-import { withAuthorization } from '../Session';
-import { withFirebase } from '../Firebase'
+import { withAuthorization } from "../Session";
+import { withFirebase } from "../Firebase";
 
 import styled from "styled-components";
 
@@ -113,6 +113,6 @@ class ItemsInsert extends Component {
   }
 }
 
-const condition = authUser => !!authUser;
+const condition = (authUser) => !!authUser;
 
-export default compose(withFirebase ,withAuthorization(condition))(ItemsInsert);
+export default compose(withFirebase, withAuthorization(condition))(ItemsInsert);

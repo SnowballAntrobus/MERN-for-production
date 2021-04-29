@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import api from "../../api";
-import {withRouter } from "react-router-dom";
-import { compose } from 'recompose';
+import { withRouter } from "react-router-dom";
+import { compose } from "recompose";
 
-import { withAuthorization } from '../Session';
-import { withFirebase } from '../Firebase'
+import { withAuthorization } from "../Session";
+import { withFirebase } from "../Firebase";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -129,6 +129,10 @@ class ItemsUpdate extends Component {
   }
 }
 
-const condition = authUser => !!authUser;
+const condition = (authUser) => !!authUser;
 
-export default compose(withRouter, withFirebase, withAuthorization(condition))(ItemsUpdate);
+export default compose(
+  withRouter,
+  withFirebase,
+  withAuthorization(condition)
+)(ItemsUpdate);
