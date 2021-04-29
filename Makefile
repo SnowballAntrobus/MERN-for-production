@@ -36,6 +36,8 @@ ssh:
 # apt install make
 
 copy-files:
+	cd client && rm -rf node_modules
+	cd server && rm -rf node_modules
 	scp -r ./* $(SSH_STRING):/root/
 
 # when you add firewall rule, have to add SSH on port 22 or it will stop working
