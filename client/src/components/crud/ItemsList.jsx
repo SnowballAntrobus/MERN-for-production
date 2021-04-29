@@ -43,7 +43,7 @@ class DeleteItem extends Component {
         `Do tou want to delete the item ${this.props.id} permanently?`
       )
     ) {
-      api.deleteItemById(this.props.firebase, this.props.id);
+      api.deleteItemById(this.props.id);
       window.location.reload();
     }
   };
@@ -105,7 +105,7 @@ class ItemsList extends Component {
         Cell: function (props) {
           return (
             <span>
-              <DeleteItem id={props.original._id} firebase={props.firebase} />
+              <DeleteItem id={props.original._id} />
             </span>
           );
         },
@@ -145,4 +145,4 @@ class ItemsList extends Component {
   }
 }
 
-export default withFirebase(ItemsList);
+export default ItemsList;
