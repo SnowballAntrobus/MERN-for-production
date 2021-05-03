@@ -23,6 +23,11 @@ class ItemsGrid extends Component {
 
   render() {
     const { items, isLoading } = this.state;
+
+    const listItems = items.map((item) =>
+    <div>{item._id}</div>
+    );
+
     console.log("TCL: ItemsList -> render -> items", items);
 
     let showGrid = true;
@@ -30,7 +35,12 @@ class ItemsGrid extends Component {
       showGrid = false;
     }
 
-    return <h1>Grid</h1>;
+    return (
+      <div>
+        <h1>Grid</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2">{listItems}</div>
+      </div>
+    );
   }
 }
 
