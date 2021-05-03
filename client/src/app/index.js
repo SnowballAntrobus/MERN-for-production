@@ -9,7 +9,12 @@ import PasswordForgetPage from "../components/PasswordForget";
 import HomePage from "../components/Home";
 import AccountPage from "../components/Account";
 import AdminPage from "../components/Admin";
-import { ItemsList, ItemsInsert, ItemsUpdate, ItemsGrid } from "../components/Item";
+import {
+  ItemsList,
+  ItemsInsert,
+  ItemsUpdate,
+  ItemsGrid,
+} from "../components/Item";
 
 import * as ROUTES from "../constants/routes";
 import { withAuthentication } from "../components/Session";

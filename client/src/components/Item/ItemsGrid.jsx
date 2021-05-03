@@ -30,9 +30,7 @@ class ItemsGrid extends Component {
       showGrid = false;
     }
 
-    return (
-      <h1>Grid</h1>
-    );
+    return <h1>Grid</h1>;
   }
 }
 

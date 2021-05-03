@@ -68,11 +68,7 @@ class ItemsUpdate extends Component {
         <h1>Update Item</h1>
 
         <label>Type: </label>
-        <input
-          type="text"
-          value={type}
-          onChange={this.handleChangeInputType}
-        />
+        <input type="text" value={type} onChange={this.handleChangeInputType} />
 
         <label>Brand: </label>
         <input
