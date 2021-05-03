@@ -12,7 +12,7 @@ build-local:
 	cd server && $(MAKE) build
 
 run-local:
-	ENV=local docker-compose -f docker-compose-production.yml up
+	ENV=local docker-compose -f docker-compose-production.yml up --remove-orphans
 
 # Production: Same as local but without hot reload. Ready for digital ocaean!
 build-production:
@@ -20,7 +20,7 @@ build-production:
 	cd server && $(MAKE) build
 
 run-production:
-	ENV=production docker-compose -f docker-compose-production.yml up -d
+	ENV=production docker-compose -f docker-compose-production.yml up -d --remove-orphans
 
 stop:
 	docker-compose down
@@ -36,6 +36,8 @@ ssh:
 # apt install make
 
 copy-files:
+	cd client && rm -rf node_modules
+	cd server && rm -rf node_modules
 	scp -r ./* $(SSH_STRING):/root/
 
 # when you add firewall rule, have to add SSH on port 22 or it will stop working
