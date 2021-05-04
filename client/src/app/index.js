@@ -11,8 +11,8 @@ import AccountPage from "../components/Account";
 import AdminPage from "../components/Admin";
 import {
   ItemsList,
-  ItemsInsert,
-  ItemsUpdate,
+  ItemInsert,
+  ItemUpdate,
   ItemsGrid,
   ItemPage,
 } from "../components/Item";
@@ -33,9 +33,9 @@ const App = () => (
       <Route path={ROUTES.ADMIN} component={AdminPage} />
       <Route path={ROUTES.ITEMS_LIST} exact component={ItemsList} />
       <Route path={ROUTES.ITEMS_GRID} exact component={ItemsGrid} />
-      <Route path={ROUTES.ITEMS_CREATE} exact component={ItemsInsert} />
-      <Route path={ROUTES.ITEMS_UPDATE} exact component={ItemsUpdate} />
-      <Route path={ROUTES.ITEMS_PAGE} exact component={ItemPage} />
+      <Route path={ROUTES.ITEM_CREATE} exact component={ItemInsert} />
+      <Route path={ROUTES.ITEM_UPDATE} exact component={ItemUpdate} />
+      <Route path={ROUTES.ITEM_PAGE} exact component={ItemPage} />
     </Switch>
   </Router>
 );

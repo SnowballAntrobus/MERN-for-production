@@ -18,34 +18,25 @@ class ItemsGrid extends Component {
     super(props);
     this.state = {
       items: [],
-      isLoading: false,
     };
   }
 
   componentDidMount = async () => {
-    this.setState({ isLoading: true });
-
     await api.getAllItems().then((items) => {
       this.setState({
         items: items.data.data,
-        isLoading: false,
       });
     });
   };
 
   render() {
-    const { items, isLoading } = this.state;
+    const { items } = this.state;
 
     const listItems = items.map((item) =>
     <LinkItem id={item._id} key={item._id}/>
     );
 
-    console.log("TCL: ItemsList -> render -> items", items);
-
-    let showGrid = true;
-    if (!items.length) {
-      showGrid = false;
-    }
+    console.log("TCL: ItemsGrid -> render -> items", items);
 
     return (
       <div>
