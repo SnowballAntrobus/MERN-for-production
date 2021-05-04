@@ -1,6 +1,18 @@
 import React, { Component } from "react";
 import api from "../../api";
 
+class LinkItem extends Component {
+  itemLink = (event) => {
+    event.preventDefault();
+
+    window.location.href = `/item/${this.props.id}`;
+  };
+
+  render() {
+    return <div onClick={this.itemLink}>Item</div>;
+  }
+}
+
 class ItemsGrid extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +37,7 @@ class ItemsGrid extends Component {
     const { items, isLoading } = this.state;
 
     const listItems = items.map((item) =>
-    <div>{item._id}</div>
+    <LinkItem id={item._id} key={item._id}/>
     );
 
     console.log("TCL: ItemsList -> render -> items", items);
@@ -38,7 +50,7 @@ class ItemsGrid extends Component {
     return (
       <div>
         <h1>Grid</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2">{listItems}</div>
+        <div className="grid grid-cols-1 md:grid-cols-2">{listItems}</div>
       </div>
     );
   }

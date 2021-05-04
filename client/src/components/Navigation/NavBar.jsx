@@ -27,6 +27,9 @@ const NavigationNonAuth = () => (
       <Link to={ROUTES.ITEMS_LIST}>List Items</Link>
     </li>
     <li>
+      <Link to={ROUTES.ITEMS_GRID}>Grid Items</Link>
+    </li>
+    <li>
       <Link to={ROUTES.SIGN_IN}>Sign In</Link>
     </li>
   </ul>

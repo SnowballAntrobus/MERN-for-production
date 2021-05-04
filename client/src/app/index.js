@@ -14,6 +14,7 @@ import {
   ItemsInsert,
   ItemsUpdate,
   ItemsGrid,
+  ItemPage,
 } from "../components/Item";
 
 import * as ROUTES from "../constants/routes";
@@ -34,6 +35,7 @@ const App = () => (
       <Route path={ROUTES.ITEMS_GRID} exact component={ItemsGrid} />
       <Route path={ROUTES.ITEMS_CREATE} exact component={ItemsInsert} />
       <Route path={ROUTES.ITEMS_UPDATE} exact component={ItemsUpdate} />
+      <Route path={ROUTES.ITEMS_PAGE} exact component={ItemPage} />
     </Switch>
   </Router>
 );

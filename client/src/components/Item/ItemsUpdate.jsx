@@ -85,7 +85,7 @@ class ItemsUpdate extends Component {
         />
 
         <button onClick={this.handleUpdateItem}>Update Item</button>
-        <a href={"/items/list"}>Cancel</a>
+        <a href={ROUTES.ITEMS_LIST}>Cancel</a>
       </div>
     );
   }
