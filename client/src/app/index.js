@@ -16,6 +16,7 @@ import {
   ItemsGrid,
   ItemPage,
 } from "../components/Item";
+import { WishlistView, WishlistUpdate } from "../components/Wishlist"
 
 import * as ROUTES from "../constants/routes";
 import { withAuthentication } from "../components/Session";
@@ -36,6 +37,8 @@ const App = () => (
       <Route path={ROUTES.ITEM_CREATE} exact component={ItemInsert} />
       <Route path={ROUTES.ITEM_UPDATE} exact component={ItemUpdate} />
       <Route path={ROUTES.ITEM_PAGE} exact component={ItemPage} />
+      <Route path={ROUTES.WISHLIST_PAGE} exact component={WishlistView} />
+      <Route path={ROUTES.WISHLIST_UPDATE} exact component={WishlistUpdate} />
     </Switch>
   </Router>
 );

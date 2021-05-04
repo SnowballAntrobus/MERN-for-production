@@ -27,12 +27,19 @@ export const deleteItemById = async (firebase, id) => {
 export const getAllItems = () => api.get(`/items`);
 export const getItemById = (id) => api.get(`/item/${id}`);
 
+export const createWishlist = (payload) => api.post("/wishlist", payload);
+export const getWishlistById = (id) => api.get(`/wishlist/${id}`);
+export const updateWishlistById = (id, payload) => api.put(`/item/${id}`, payload);
+
 const apis = {
   insertItem,
   getAllItems,
   updateItemById,
   deleteItemById,
   getItemById,
+  createWishlist,
+  getWishlistById,
+  updateWishlistById,
 };
 
 export default apis;
