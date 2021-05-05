@@ -47,6 +47,9 @@ const NavigationAuth = () => (
       <Link to={ROUTES.ITEMS_LIST}>List Items</Link>
     </li>
     <li>
+      <Link to={ROUTES.ITEMS_GRID}>Grid Items</Link>
+    </li>
+    <li>
       <Link to={ROUTES.ITEM_CREATE}>Create Item</Link>
     </li>
     <li>
