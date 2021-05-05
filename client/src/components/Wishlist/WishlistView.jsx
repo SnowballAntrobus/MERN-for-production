@@ -41,14 +41,14 @@ class WishlistView extends Component {
     const { items } = this.state;
 
     const listItems = items.map((item) =>
-    <LinkItem item={item} key={item._id}/>
+    <LinkItem item={item} key={item}/>
     );
 
     console.log("TCL: ItemsGrid -> render -> items", items);
 
     return (
       <div>
-        <h1>Grid</h1>
+        <h1>Wishlist</h1>
         <div className="grid grid-cols-1">{listItems}</div>
       </div>
     );
