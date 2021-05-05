@@ -13,4 +13,4 @@ export const ITEMS_LIST = "/items/list";
 export const ITEMS_GRID = "/items/grid";
 
 export const WISHLIST_PAGE = "/wishlists/:id";
-export const WISHLIST_UPDATE = "/wishlist/my/:id";
+export const WISHLIST_UPDATE = "/mywishlist/:id";

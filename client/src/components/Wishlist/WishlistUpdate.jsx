@@ -7,8 +7,9 @@ class LinkItem extends Component {
 
     window.location.href = `/item/${this.props.item._id}`;
   };
-  removeItem = () => {
-    this.props.removeItem(this.props.item);
+  removeItem = async () => {
+    await this.props.removeItem(this.props.item);
+    window.location.reload();
   };
 
   render() {
@@ -17,8 +18,8 @@ class LinkItem extends Component {
         <div>Type: {this.props.item.type}</div>
         <div>Brand: {this.props.item.brand}</div>
         <div>Season: {this.props.item.season}</div>
-        <button onClick={this.itemLink}>Link</button>
-        <button onClick={this.removeItem}>Remove</button>
+        <div><button onClick={this.itemLink}>GO</button></div>
+        <div><button onClick={this.removeItem}>Remove</button></div>
       </div>
     );
   }
@@ -43,9 +44,10 @@ class WishlistUpdate extends Component {
   };
 
   removeItem = async (item_to_remove) => {
+    console.log(item_to_remove)
     const { id, items } = this.state;
-    const result = items.filter(item => item !== item_to_remove);
-    const payload = { result };
+    const result = items.filter(item => item._id !== item_to_remove._id);
+    const payload = { items: result };
 
     await api.updateWishlistById(id, payload);
   }
@@ -61,7 +63,7 @@ class WishlistUpdate extends Component {
 
     return (
       <div>
-        <h1>Grid</h1>
+        <h1>My Wishlist</h1>
         <div className="grid grid-cols-1">{listItems}</div>
       </div>
     );

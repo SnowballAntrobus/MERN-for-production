@@ -9,13 +9,14 @@ class AddItemToWishlist extends Component {
     event.preventDefault();
     const id = this.props.firebase.getUID();
     api.getWishlistById(id).then((wishlist) => {
-      if (!wishlist.data.data.items.includes(this.props.item._id)) {
+      if (wishlist.data.data.items.filter(item => item._id === this.props.item._id).length === 0) {
         const newItems = [...wishlist.data.data.items];
         newItems.push(this.props.item);
         const payload = { items: newItems };
         api.updateWishlistById(id, payload);
+        window.alert("Item added to your wishlist!");
       } else {
-        window.alert("Item is already in your wishlist!");
+        window.alert("Item is already in your wishlist");
       }
     });
   };
