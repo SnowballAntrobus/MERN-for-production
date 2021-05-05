@@ -11,12 +11,13 @@ class AddItemToWishlist extends Component {
     event.preventDefault();
     const id = this.props.firebase.getUID();
     api.getWishlistById(id).then((wishlist) => {
-      if (!wishlist.items.some((item) => item._id === this.props.item._id)) {
-        wishlist.items.push(this.props.item);
-        const payload = { id: id, wishlist: wishlist.items };
+      if (!wishlist.data.data.items.includes(this.props.item._id)) {
+        const newItems = [...wishlist.data.data.items];
+        newItems.push(this.props.item);
+        const payload = { items: newItems };
         api.updateWishlistById(id, payload);
       } else {
-        alert("Item is already in your wishlist!");
+        window.alert("Item is already in your wishlist!");
       }
     });
   };
@@ -43,14 +44,15 @@ class ItemPage extends Component {
     const item = await api.getItemById(id);
 
     this.setState({
-      item: item,
+      type: item.data.data.type,
+      brand: item.data.data.brand,
+      season: item.data.data.season,
     });
   };
 
   render() {
-    const item = this.state;
-    const { type, brand, season } = item;
-
+    const { id, type, brand, season } = this.state;
+    const item = { _id: id, type: type, brand: brand, season: season };
     return (
       <div>
         <h1>Item Page</h1>

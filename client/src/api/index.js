@@ -29,7 +29,7 @@ export const getItemById = (id) => api.get(`/item/${id}`);
 
 export const createWishlist = (payload) => api.post("/wishlist", payload);
 export const getWishlistById = (id) => api.get(`/wishlist/${id}`);
-export const updateWishlistById = (id, payload) => api.put(`/item/${id}`, payload);
+export const updateWishlistById = (id, payload) => api.put(`/wishlist/${id}`, payload);
 
 const apis = {
   insertItem,
