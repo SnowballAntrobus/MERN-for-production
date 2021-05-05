@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import api from "../../api";
 
 class LinkItem extends Component {
@@ -10,10 +11,11 @@ class LinkItem extends Component {
 
   render() {
     return (
-      <div onClick={this.itemLink}>
+      <div>
         <div>Type: {this.props.item.type}</div>
         <div>Brand: {this.props.item.brand}</div>
         <div>Season: {this.props.item.season}</div>
+        <button onClick={this.itemLink}>GO</button>
       </div>
     );
   }
@@ -41,7 +43,7 @@ class WishlistView extends Component {
     const { items } = this.state;
 
     const listItems = items.map((item) =>
-    <LinkItem item={item} key={item}/>
+    <LinkItem item={item} key={item._id}/>
     );
 
     console.log("TCL: ItemsGrid -> render -> items", items);

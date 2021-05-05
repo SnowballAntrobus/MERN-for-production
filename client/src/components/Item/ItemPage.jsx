@@ -4,8 +4,6 @@ import { withFirebase } from "../Firebase";
 
 import api from "../../api";
 
-import * as ROUTES from "../../constants/routes";
-
 class AddItemToWishlist extends Component {
   addToWishlist = (event) => {
     event.preventDefault();
@@ -64,7 +62,6 @@ class ItemPage extends Component {
             <li>Season: {season}</li>
           </ul>
         </div>
-        <a href={ROUTES.ITEMS_GRID}>Back</a>
       </div>
     );
   }
