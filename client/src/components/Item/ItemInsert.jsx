@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import api from "../../api";
 import { compose } from "recompose";
 
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
+
+import api from "../../api";
 
 class ItemsInsert extends Component {
   constructor(props) {
