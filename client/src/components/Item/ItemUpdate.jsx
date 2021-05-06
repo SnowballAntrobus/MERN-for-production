@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import api from "../../api";
 import { withRouter } from "react-router-dom";
 import { compose } from "recompose";
 
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
+
+import api from "../../api";
 
 import * as ROUTES from "../../constants/routes";
 

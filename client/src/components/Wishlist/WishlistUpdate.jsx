@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { compose } from "recompose";
+
+import { withAuthorization } from "../Session";
+import { withFirebase } from "../Firebase";
+
 import api from "../../api";
 
 class LinkItem extends Component {
@@ -18,8 +23,12 @@ class LinkItem extends Component {
         <div>Type: {this.props.item.type}</div>
         <div>Brand: {this.props.item.brand}</div>
         <div>Season: {this.props.item.season}</div>
-        <div><button onClick={this.itemLink}>GO</button></div>
-        <div><button onClick={this.removeItem}>Remove</button></div>
+        <div>
+          <button onClick={this.itemLink}>GO</button>
+        </div>
+        <div>
+          <button onClick={this.removeItem}>Remove</button>
+        </div>
       </div>
     );
   }
@@ -39,25 +48,25 @@ class WishlistUpdate extends Component {
     const wishlist = await api.getWishlistById(id);
 
     this.setState({
-      items: wishlist.data.data.items
+      items: wishlist.data.data.items,
     });
   };
 
   removeItem = async (item_to_remove) => {
-    console.log(item_to_remove)
+    console.log(item_to_remove);
     const { id, items } = this.state;
-    const result = items.filter(item => item._id !== item_to_remove._id);
+    const result = items.filter((item) => item._id !== item_to_remove._id);
     const payload = { items: result };
 
     await api.updateWishlistById(id, payload);
-  }
+  };
 
   render() {
     const { items } = this.state;
 
-    const listItems = items.map((item) =>
-    <LinkItem item={item} key={item._id} removeItem={this.removeItem}/>
-    );
+    const listItems = items.map((item) => (
+      <LinkItem item={item} key={item._id} removeItem={this.removeItem} />
+    ));
 
     console.log("TCL: ItemsGrid -> render -> items", items);
 
@@ -70,4 +79,13 @@ class WishlistUpdate extends Component {
   }
 }
 
-export default WishlistUpdate;
+const condition = (authUser) => {
+  if (!!authUser){
+    return authUser.uid === window.location.pathname.split('/')[2];
+  }
+};
+
+export default compose(
+  withFirebase,
+  withAuthorization(condition)
+)(WishlistUpdate);
