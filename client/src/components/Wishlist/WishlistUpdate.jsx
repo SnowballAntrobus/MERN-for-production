@@ -58,9 +58,11 @@ class WishlistUpdate extends Component {
     const result = items.filter((item) => item._id !== item_to_remove._id);
     const payload = { items: result };
 
-    await api.updateWishlistById(this.props.firebase, id, payload).then((res) => {
-      window.alert(`Item removed successfully`);
-    });
+    await api
+      .updateWishlistById(this.props.firebase, id, payload)
+      .then((res) => {
+        window.alert(`Item removed successfully`);
+      });
   };
 
   render() {
@@ -82,8 +84,8 @@ class WishlistUpdate extends Component {
 }
 
 const condition = (authUser) => {
-  if (!!authUser){
-    return authUser.uid === window.location.pathname.split('/')[2];
+  if (!!authUser) {
+    return authUser.uid === window.location.pathname.split("/")[2];
   }
 };
 

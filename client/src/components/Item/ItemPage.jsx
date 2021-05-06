@@ -7,9 +7,17 @@ import api from "../../api";
 class AddItemToWishlist extends Component {
   addToWishlist = (event) => {
     event.preventDefault();
+    if (!!this.props.firebase) {
+      window.alert("Sign in to use this feature!")
+      return
+    }
     const id = this.props.firebase.getUID();
     api.getWishlistById(id).then((wishlist) => {
-      if (wishlist.data.data.items.filter(item => item._id === this.props.item._id).length === 0) {
+      if (
+        wishlist.data.data.items.filter(
+          (item) => item._id === this.props.item._id
+        ).length === 0
+      ) {
         const newItems = [...wishlist.data.data.items];
         newItems.push(this.props.item);
         const payload = { items: newItems };

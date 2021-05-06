@@ -53,14 +53,13 @@ checkIfAuthenticatedId = (req, res, next) => {
       const { authToken } = req;
       const userInfo = await admin.auth().verifyIdToken(authToken);
       req.authId = userInfo.uid;
-      if(userInfo.uid === req.params.id) {
+      if (userInfo.uid === req.params.id) {
         return next();
       } else {
         return res
           .status(401)
           .send({ error: "You are not authorized UID to make this request" });
       }
-      
     } catch (e) {
       return res
         .status(401)

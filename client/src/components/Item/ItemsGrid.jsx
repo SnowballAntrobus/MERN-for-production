@@ -9,7 +9,7 @@ class LinkItem extends Component {
   };
 
   render() {
-    return <div onClick={this.itemLink}>Item</div>;
+    return <div onClick={this.itemLink}>ItemIMAGELink</div>;
   }
 }
 
@@ -32,9 +32,9 @@ class ItemsGrid extends Component {
   render() {
     const { items } = this.state;
 
-    const listItems = items.map((item) =>
-    <LinkItem id={item._id} key={item._id}/>
-    );
+    const listItems = items.map((item) => (
+      <LinkItem id={item._id} key={item._id} />
+    ));
 
     console.log("TCL: ItemsGrid -> render -> items", items);
 

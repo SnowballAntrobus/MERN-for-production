@@ -16,7 +16,7 @@ import {
   ItemsGrid,
   ItemPage,
 } from "../components/Item";
-import { WishlistView, WishlistUpdate } from "../components/Wishlist"
+import { WishlistView, WishlistUpdate } from "../components/Wishlist";
 
 import * as ROUTES from "../constants/routes";
 import { withAuthentication } from "../components/Session";

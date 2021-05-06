@@ -40,10 +40,14 @@ getWishlistById = async (req, res) => {
     }
 
     if (!wishlist) {
-      return res.status(404).json({ success: false, error: `Wishlist not found` });
+      return res
+        .status(404)
+        .json({ success: false, error: `Wishlist not found` });
     }
     return res.status(200).json({ success: true, data: wishlist });
-  }).populate('items').catch((err) => console.log(err));
+  })
+    .populate("items")
+    .catch((err) => console.log(err));
 };
 
 updateWishlist = async (req, res) => {

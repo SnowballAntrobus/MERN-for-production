@@ -35,16 +35,16 @@ class WishlistView extends Component {
     const wishlist = await api.getWishlistById(id);
 
     this.setState({
-      items: wishlist.data.data.items
+      items: wishlist.data.data.items,
     });
   };
 
   render() {
     const { items } = this.state;
 
-    const listItems = items.map((item) =>
-    <LinkItem item={item} key={item._id}/>
-    );
+    const listItems = items.map((item) => (
+      <LinkItem item={item} key={item._id} />
+    ));
 
     console.log("TCL: ItemsGrid -> render -> items", items);
 

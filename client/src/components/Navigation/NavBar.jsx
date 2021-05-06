@@ -7,17 +7,12 @@ import Logo from "./Logo";
 import SignOutButton from "../SignOut";
 
 import * as ROUTES from "../../constants/routes";
-import { renderComponent } from "recompose";
 
 const NavBar = () => (
   <div>
     <AuthUserContext.Consumer>
       {(authUser) =>
-        authUser ? (
-          <NavigationAuth uid={authUser.uid} />
-        ) : (
-          <NavigationNonAuth />
-        )
+        authUser ? <NavigationAuth uid={authUser.uid} /> : <NavigationNonAuth />
       }
     </AuthUserContext.Consumer>
   </div>
@@ -41,9 +36,6 @@ const NavigationNonAuth = () => (
 );
 
 class NavigationAuth extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <ul>
@@ -67,7 +59,7 @@ class NavigationAuth extends Component {
         </li>
       </ul>
     );
-  };
-};
+  }
+}
 
 export default NavBar;
