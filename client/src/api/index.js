@@ -29,7 +29,12 @@ export const getItemById = (id) => api.get(`/item/${id}`);
 
 export const createWishlist = (payload) => api.post("/wishlist", payload);
 export const getWishlistById = (id) => api.get(`/wishlist/${id}`);
-export const updateWishlistById = (id, payload) => api.put(`/wishlist/${id}`, payload);
+export const updateWishlistById = async (firebase, id, payload) => {
+  const token = await firebase.auth.currentUser.getIdToken();
+  return api.put(`/wishlist/${id}`, payload, {
+    headers: { authorization: `Bearer ${token}` },
+  });
+};
 
 const apis = {
   insertItem,

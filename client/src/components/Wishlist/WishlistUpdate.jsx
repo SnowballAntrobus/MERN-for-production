@@ -58,7 +58,7 @@ class WishlistUpdate extends Component {
     const result = items.filter((item) => item._id !== item_to_remove._id);
     const payload = { items: result };
 
-    await api.updateWishlistById(id, payload);
+    await api.updateWishlistById(this.props.firebase, id, payload);
   };
 
   render() {
