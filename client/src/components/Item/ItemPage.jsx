@@ -7,7 +7,7 @@ import api from "../../api";
 class AddItemToWishlist extends Component {
   addToWishlist = (event) => {
     event.preventDefault();
-    if (!!this.props.firebase) {
+    if (this.props.firebase == null) {
       window.alert("Sign in to use this feature!")
       return
     }
@@ -21,7 +21,7 @@ class AddItemToWishlist extends Component {
         const newItems = [...wishlist.data.data.items];
         newItems.push(this.props.item);
         const payload = { items: newItems };
-        api.updateWishlistById(id, payload);
+        api.updateWishlistById(this.props.firebase, id, payload);
         window.alert("Item added to your wishlist!");
       } else {
         window.alert("Item is already in your wishlist");
