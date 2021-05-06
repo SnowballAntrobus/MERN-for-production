@@ -23,9 +23,6 @@ const NavigationNonAuth = () => (
       <Logo />
     </li>
     <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
       <Link to={ROUTES.ITEMS_LIST}>List Items</Link>
     </li>
     <li>
