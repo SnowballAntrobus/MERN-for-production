@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 
 import { AuthUserContext } from "../Session";
+import { withFirebase } from "../Firebase";
 
 const NavBar = () => (
   <div>
@@ -41,10 +42,7 @@ const NavigationAuth = () => (
       <Logo />
     </li>
     <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ITEMS_LIST}>List Items</Link>
+      <Link to={`mywishlist/${this.props.firebase.getUID()}`}>Wishlist</Link>
     </li>
     <li>
       <Link to={ROUTES.ITEMS_GRID}>Grid Items</Link>
@@ -61,4 +59,4 @@ const NavigationAuth = () => (
   </ul>
 );
 
-export default NavBar;
+export default withFirebase(NavBar);
