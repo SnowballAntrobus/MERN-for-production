@@ -1,12 +1,13 @@
 import React from "react";
-
-import Logo from "./Logo";
-import SignOutButton from "../SignOut";
 import { Link } from "react-router-dom";
-import * as ROUTES from "../../constants/routes";
 
 import { AuthUserContext } from "../Session";
 import { withFirebase } from "../Firebase";
+
+import Logo from "./Logo";
+import SignOutButton from "../SignOut";
+
+import * as ROUTES from "../../constants/routes";
 
 const NavBar = () => (
   <div>
