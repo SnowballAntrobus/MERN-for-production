@@ -1,5 +1,7 @@
 const express = require("express");
 
+const auth = require("../middlewares/auth-middleware");
+
 const WishlistCtrl = require("../controllers/wishlist-ctrl");
 
 const router = express.Router();
