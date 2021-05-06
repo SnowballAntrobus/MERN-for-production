@@ -1,18 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { AuthUserContext } from "../Session";
-import { withFirebase } from "../Firebase";
 
 import Logo from "./Logo";
 import SignOutButton from "../SignOut";
 
 import * as ROUTES from "../../constants/routes";
+import { renderComponent } from "recompose";
 
 const NavBar = () => (
   <div>
     <AuthUserContext.Consumer>
-      {(authUser) => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
+      {(authUser) =>
+        authUser ? (
+          <NavigationAuth uid={authUser.uid} />
+        ) : (
+          <NavigationNonAuth />
+        )
+      }
     </AuthUserContext.Consumer>
   </div>
 );
@@ -34,27 +40,34 @@ const NavigationNonAuth = () => (
   </ul>
 );
 
-const NavigationAuth = () => (
-  <ul>
-    <li>
-      <Logo />
-    </li>
-    <li>
-      <Link to={`mywishlist/${this.props.firebase.getUID()}`}>Wishlist</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ITEMS_GRID}>Grid Items</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ITEM_CREATE}>Create Item</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-    <li>
-      <SignOutButton />
-    </li>
-  </ul>
-);
+class NavigationAuth extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <ul>
+        <li>
+          <Logo />
+        </li>
+        <li>
+          <Link to={`mywishlist/${this.props.uid}`}>Wishlist</Link>
+        </li>
+        <li>
+          <Link to={ROUTES.ITEMS_GRID}>Grid Items</Link>
+        </li>
+        <li>
+          <Link to={ROUTES.ITEM_CREATE}>Create Item</Link>
+        </li>
+        <li>
+          <Link to={ROUTES.ACCOUNT}>Account</Link>
+        </li>
+        <li>
+          <SignOutButton />
+        </li>
+      </ul>
+    );
+  };
+};
 
-export default withFirebase(NavBar);
+export default NavBar;
