@@ -11,7 +11,7 @@ class AddItemToWishlist extends Component {
       window.alert("Sign in to use this feature!")
       return
     }
-    const id = this.props.authUser.getUID();
+    const id = this.props.authUser.uid;
     wishlistApi.getWishlistById(id).then((wishlist) => {
       if (
         wishlist.data.data.items.filter(

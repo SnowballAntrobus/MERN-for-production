@@ -37,7 +37,7 @@ class NavigationAuth extends Component {
           <Logo />
         </li>
         <li>
-          <Link to={`/mywishlist/${this.props.uid}`}>Wishlist</Link>
+          <Link to={`/mywishlist/${this.props.authUser.uid}`}>Wishlist</Link>
         </li>
         <li>
           <Link to={ROUTES.ITEMS_GRID}>Grid Items</Link>
