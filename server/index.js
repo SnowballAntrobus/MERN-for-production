@@ -2,7 +2,7 @@ import express, { urlencoded, json } from "express";
 import cors from "cors";
 require("dotenv").config();
 
-import { on } from "./db";
+import db from "./db";
 
 import itemRouter from "./routes/item-router";
 import wishlistRouter from "./routes/wishlist-router";
