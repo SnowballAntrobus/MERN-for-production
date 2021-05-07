@@ -1,7 +1,7 @@
-import admin, { initializeApp, credential as _credential } from "firebase-admin";
+const admin = require("firebase-admin");
 
-initializeApp({
-  credential: _credential.applicationDefault(),
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
 });
 
-export default admin;
+module.exports = admin;

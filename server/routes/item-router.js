@@ -1,15 +1,15 @@
-import { Router } from "express";
+const express = require("express");
 
-import { checkIfAuthenticated, checkIfAdmin } from "../middlewares/auth-middleware";
+const auth = require("../middlewares/auth-middleware");
 
-import { createItem, updateItem, deleteItem, getItemById, getItems } from "../controllers/item-ctrl";
+const ItemCtrl = require("../controllers/item-ctrl");
 
-const router = Router();
+const router = express.Router();
 
-router.post("/item", checkIfAuthenticated, createItem);
-router.put("/item/:id", checkIfAuthenticated, updateItem);
-router.delete("/item/:id", checkIfAdmin, deleteItem);
-router.get("/item/:id", getItemById);
-router.get("/items", getItems);
+router.post("/item", auth.checkIfAuthenticated, ItemCtrl.createItem);
+router.put("/item/:id", auth.checkIfAuthenticated, ItemCtrl.updateItem);
+router.delete("/item/:id", auth.checkIfAdmin, ItemCtrl.deleteItem);
+router.get("/item/:id", ItemCtrl.getItemById);
+router.get("/items", ItemCtrl.getItems);
 
-export default router;
+module.exports = router;

@@ -1,11 +1,11 @@
-import { connect, connection } from "mongoose";
+const mongoose = require("mongoose");
 
 const connectionString = process.env.MONGO_URI;
 
-connect(connectionString, { useNewUrlParser: true }).catch((e) => {
+mongoose.connect(connectionString, { useNewUrlParser: true }).catch((e) => {
   console.error("Connection error", e.message);
 });
 
-const db = connection;
+const db = mongoose.connection;
 
-export default db;
+module.exports = db;
