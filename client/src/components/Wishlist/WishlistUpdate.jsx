@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { inject, observer } from 'mobx-react';
 import { compose } from "recompose";
 
 import { withAuthorization } from "../Session";
-import { withFirebase } from "../Firebase";
 
 import { wishlistApi } from "../../api";
 
@@ -59,7 +59,7 @@ class WishlistUpdate extends Component {
     const payload = { items: result };
 
     await wishlistApi
-      .updateWishlistById(this.props.firebase, id, payload)
+      .updateWishlistById(this.props.sessionStore.authUser, id, payload)
       .then((res) => {
         window.alert(`Item removed successfully`);
       });
@@ -89,7 +89,7 @@ const condition = (authUser) => {
   }
 };
 
-export default compose(
-  withFirebase,
+export default compose(inject('sessionStore'),
+  observer,
   withAuthorization(condition)
 )(WishlistUpdate);

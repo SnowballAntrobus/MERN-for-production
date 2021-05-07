@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import { inject, observer } from 'mobx-react';
 import { compose } from "recompose";
 
 import { withAuthorization } from "../Session";
-import { withFirebase } from "../Firebase";
 
 import { itemApi } from "../../api";
 
@@ -36,7 +36,7 @@ class ItemsInsert extends Component {
     const { type, brand, season } = this.state;
     const payload = { type, brand, season };
 
-    await itemApi.insertItem(this.props.firebase, payload).then((res) => {
+    await itemApi.insertItem(this.props.sessionStore.authUser, payload).then((res) => {
       window.alert(`Item inserted successfully`);
       this.setState({
         type: "",
@@ -78,4 +78,6 @@ class ItemsInsert extends Component {
 
 const condition = (authUser) => !!authUser;
 
-export default compose(withFirebase, withAuthorization(condition))(ItemsInsert);
+export default compose(inject('sessionStore'),
+  observer, withAuthorization(condition)
+)(ItemsInsert);

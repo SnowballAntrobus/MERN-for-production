@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-
-import { withFirebase } from "../Firebase";
+import { inject, observer } from 'mobx-react';
+import { compose } from "recompose";
 
 import { itemApi, wishlistApi } from "../../api";
 
 class AddItemToWishlist extends Component {
   addToWishlist = (event) => {
     event.preventDefault();
-    if (this.props.firebase == null) {
+    if (this.props.authUser === null) {
       window.alert("Sign in to use this feature!")
       return
     }
-    const id = this.props.firebase.getUID();
+    const id = this.props.authUser.getUID();
     wishlistApi.getWishlistById(id).then((wishlist) => {
       if (
         wishlist.data.data.items.filter(
@@ -21,7 +21,7 @@ class AddItemToWishlist extends Component {
         const newItems = [...wishlist.data.data.items];
         newItems.push(this.props.item);
         const payload = { items: newItems };
-        wishlistApi.updateWishlistById(this.props.firebase, id, payload);
+        wishlistApi.updateWishlistById(this.props.authUser, id, payload);
         window.alert("Item added to your wishlist!");
       } else {
         window.alert("Item is already in your wishlist");
@@ -63,7 +63,7 @@ class ItemPage extends Component {
     return (
       <div>
         <h1>Item Page</h1>
-        <AddItemToWishlist item={item} firebase={this.props.firebase} />
+        <AddItemToWishlist item={item} authUser={this.props.sessionStore.authUser} />
         <div>
           <ul>
             <li>Type: {type}</li>
@@ -76,4 +76,6 @@ class ItemPage extends Component {
   }
 }
 
-export default withFirebase(ItemPage);
+export default compose(inject('sessionStore'),
+  observer
+)(ItemPage);

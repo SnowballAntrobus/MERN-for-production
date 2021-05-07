@@ -6,20 +6,20 @@ const api = axios.create({
   baseURL,
 });
 
-export const insertItem = async (firebase, payload) => {
-  const token = await firebase.auth.currentUser.getIdToken();
+export const insertItem = async (authUser, payload) => {
+  const token = await authUser.getIdToken();
   return api.post("/item", payload, {
     headers: { authorization: `Bearer ${token}` },
   });
 };
-export const updateItemById = async (firebase, id, payload) => {
-  const token = await firebase.auth.currentUser.getIdToken();
+export const updateItemById = async (authUser, id, payload) => {
+  const token = await authUser.getIdToken();
   return api.put(`/item/${id}`, payload, {
     headers: { authorization: `Bearer ${token}` },
   });
 };
-export const deleteItemById = async (firebase, id) => {
-  const token = await firebase.auth.currentUser.getIdToken();
+export const deleteItemById = async (authUser, id) => {
+  const token = await authUser.getIdToken();
   return api.delete(`/item/${id}`, {
     headers: { authorization: `Bearer ${token}` },
   });

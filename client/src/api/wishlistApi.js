@@ -8,8 +8,8 @@ const api = axios.create({
 
 export const createWishlist = (payload) => api.post("/wishlist", payload);
 export const getWishlistById = (id) => api.get(`/wishlist/${id}`);
-export const updateWishlistById = async (firebase, id, payload) => {
-  const token = await firebase.auth.currentUser.getIdToken();
+export const updateWishlistById = async (authUser, id, payload) => {
+  const token = await authUser.getIdToken();
   return api.put(`/wishlist/${id}`, payload, {
     headers: { authorization: `Bearer ${token}` },
   });

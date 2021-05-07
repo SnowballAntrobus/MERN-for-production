@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import { inject, observer } from 'mobx-react';
 import { compose } from "recompose";
 
 import { withAuthorization } from "../Session";
-import { withFirebase } from "../Firebase";
 
 import { itemApi } from "../../api";
 
@@ -40,7 +40,7 @@ class ItemsUpdate extends Component {
     const { id, type, brand, season } = this.state;
     const payload = { type, brand, season };
 
-    await itemApi.updateItemById(this.props.firebase, id, payload).then((res) => {
+    await itemApi.updateItemById(this.props.sessionStore.authUser, id, payload).then((res) => {
       window.alert(`Item updated successfully`);
       this.setState({
         type: "",
@@ -94,8 +94,8 @@ class ItemsUpdate extends Component {
 
 const condition = (authUser) => !!authUser;
 
-export default compose(
+export default compose(inject('sessionStore'),
+  observer,
   withRouter,
-  withFirebase,
   withAuthorization(condition)
 )(ItemsUpdate);

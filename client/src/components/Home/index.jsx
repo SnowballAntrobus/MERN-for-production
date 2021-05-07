@@ -1,4 +1,6 @@
 import React from "react";
+import { inject, observer } from 'mobx-react';
+import { compose } from 'recompose';
 
 import { withAuthorization } from "../Session";
 
@@ -9,6 +11,10 @@ const HomePage = () => (
   </div>
 );
 
-const condition = (authUser) => !!authUser;
+const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(HomePage);
+export default compose(
+  inject('sessionStore'),
+  observer,
+  withAuthorization(condition),
+)(HomePage);
