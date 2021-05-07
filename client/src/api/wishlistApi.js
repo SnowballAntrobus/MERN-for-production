@@ -15,10 +15,10 @@ export const updateWishlistById = async (authUser, id, payload) => {
   });
 };
 
-const WishlistApi = {
+const wishlistApi = {
   createWishlist,
   getWishlistById,
   updateWishlistById,
 };
 
-export default WishlistApi;
+export default wishlistApi;

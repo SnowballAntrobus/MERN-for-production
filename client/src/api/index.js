@@ -1,4 +1,4 @@
 import itemApi from "./itemApi";
-import WishlistApi from "./wishlistApi";
+import wishlistApi from "./wishlistApi";
 
-export {itemApi, WishlistApi}
+export {itemApi, wishlistApi}
