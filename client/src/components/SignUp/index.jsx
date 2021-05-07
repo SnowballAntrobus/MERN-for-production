@@ -6,7 +6,7 @@ import { withFirebase } from "../Firebase";
 
 import * as ROUTES from "../../constants/routes";
 
-import api from "../../api";
+import { wishlistApi } from "../../api";
 
 const SignUpPage = () => (
   <div>
@@ -37,7 +37,7 @@ class SignUpFormBase extends Component {
       .then((authUser) => {
         const _id = authUser.user.uid;
         const payload = { _id };
-        api.createWishlist(payload);
+        wishlistApi.createWishlist(payload);
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })

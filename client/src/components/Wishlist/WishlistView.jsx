@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import api from "../../api";
+import { wishlistApi } from "../../api";
 
 class LinkItem extends Component {
   itemLink = (event) => {
@@ -32,7 +32,7 @@ class WishlistView extends Component {
 
   componentDidMount = async () => {
     const { id } = this.state;
-    const wishlist = await api.getWishlistById(id);
+    const wishlist = await wishlistApi.getWishlistById(id);
 
     this.setState({
       items: wishlist.data.data.items,

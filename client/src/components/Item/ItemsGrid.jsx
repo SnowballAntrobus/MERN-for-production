@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import api from "../../api";
+import { itemApi } from "../../api";
 
 class LinkItem extends Component {
   itemLink = (event) => {
@@ -22,7 +22,7 @@ class ItemsGrid extends Component {
   }
 
   componentDidMount = async () => {
-    await api.getAllItems().then((items) => {
+    await itemApi.getAllItems().then((items) => {
       this.setState({
         items: items.data.data,
       });

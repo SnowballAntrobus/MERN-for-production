@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactTable from "react-table-6";
-import api from "../../api";
+import { itemApi } from "../../api";
 
 import "react-table-6/react-table.css";
 
@@ -25,7 +25,7 @@ class DeleteItem extends Component {
         `Do tou want to delete the item ${this.props.id} permanently?`
       )
     ) {
-      api.deleteItemById(this.props.id);
+      itemApi.deleteItemById(this.props.id);
       window.location.reload();
     }
   };
@@ -48,7 +48,7 @@ class ItemsList extends Component {
   componentDidMount = async () => {
     this.setState({ isLoading: true });
 
-    await api.getAllItems().then((items) => {
+    await itemApi.getAllItems().then((items) => {
       this.setState({
         items: items.data.data,
         isLoading: false,

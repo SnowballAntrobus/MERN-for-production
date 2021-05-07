@@ -4,7 +4,7 @@ import { compose } from "recompose";
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 
-import api from "../../api";
+import { wishlistApi } from "../../api";
 
 class LinkItem extends Component {
   itemLink = (event) => {
@@ -45,7 +45,7 @@ class WishlistUpdate extends Component {
 
   componentDidMount = async () => {
     const { id } = this.state;
-    const wishlist = await api.getWishlistById(id);
+    const wishlist = await wishlistApi.getWishlistById(id);
 
     this.setState({
       items: wishlist.data.data.items,
@@ -58,7 +58,7 @@ class WishlistUpdate extends Component {
     const result = items.filter((item) => item._id !== item_to_remove._id);
     const payload = { items: result };
 
-    await api
+    await wishlistApi
       .updateWishlistById(this.props.firebase, id, payload)
       .then((res) => {
         window.alert(`Item removed successfully`);

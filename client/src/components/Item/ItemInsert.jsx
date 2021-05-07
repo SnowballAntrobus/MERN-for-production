@@ -4,7 +4,7 @@ import { compose } from "recompose";
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 
-import api from "../../api";
+import { itemApi } from "../../api";
 
 class ItemsInsert extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class ItemsInsert extends Component {
     const { type, brand, season } = this.state;
     const payload = { type, brand, season };
 
-    await api.insertItem(this.props.firebase, payload).then((res) => {
+    await itemApi.insertItem(this.props.firebase, payload).then((res) => {
       window.alert(`Item inserted successfully`);
       this.setState({
         type: "",

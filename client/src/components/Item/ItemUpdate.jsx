@@ -5,7 +5,7 @@ import { compose } from "recompose";
 import { withAuthorization } from "../Session";
 import { withFirebase } from "../Firebase";
 
-import api from "../../api";
+import { itemApi } from "../../api";
 
 import * as ROUTES from "../../constants/routes";
 
@@ -40,7 +40,7 @@ class ItemsUpdate extends Component {
     const { id, type, brand, season } = this.state;
     const payload = { type, brand, season };
 
-    await api.updateItemById(this.props.firebase, id, payload).then((res) => {
+    await itemApi.updateItemById(this.props.firebase, id, payload).then((res) => {
       window.alert(`Item updated successfully`);
       this.setState({
         type: "",
@@ -53,7 +53,7 @@ class ItemsUpdate extends Component {
 
   componentDidMount = async () => {
     const { id } = this.state;
-    const item = await api.getItemById(id);
+    const item = await itemApi.getItemById(id);
 
     this.setState({
       type: item.data.data.type,

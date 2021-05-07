@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { withFirebase } from "../Firebase";
 
-import api from "../../api";
+import { itemApi, wishlistApi } from "../../api";
 
 class AddItemToWishlist extends Component {
   addToWishlist = (event) => {
@@ -12,7 +12,7 @@ class AddItemToWishlist extends Component {
       return
     }
     const id = this.props.firebase.getUID();
-    api.getWishlistById(id).then((wishlist) => {
+    wishlistApi.getWishlistById(id).then((wishlist) => {
       if (
         wishlist.data.data.items.filter(
           (item) => item._id === this.props.item._id
@@ -21,7 +21,7 @@ class AddItemToWishlist extends Component {
         const newItems = [...wishlist.data.data.items];
         newItems.push(this.props.item);
         const payload = { items: newItems };
-        api.updateWishlistById(this.props.firebase, id, payload);
+        wishlistApi.updateWishlistById(this.props.firebase, id, payload);
         window.alert("Item added to your wishlist!");
       } else {
         window.alert("Item is already in your wishlist");
@@ -48,7 +48,7 @@ class ItemPage extends Component {
 
   componentDidMount = async () => {
     const { id } = this.state;
-    const item = await api.getItemById(id);
+    const item = await itemApi.getItemById(id);
 
     this.setState({
       type: item.data.data.type,
