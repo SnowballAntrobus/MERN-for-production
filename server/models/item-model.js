@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema as _Schema, model } from "mongoose";
+const Schema = _Schema;
 
 const Item = new Schema(
   {
@@ -10,4 +10,4 @@ const Item = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Item", Item, "items");
+export default model("Item", Item, "items");

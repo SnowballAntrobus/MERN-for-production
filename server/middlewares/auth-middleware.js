@@ -1,4 +1,4 @@
-const admin = require("../services/authService");
+import { auth } from "../services/authService";
 
 getAuthToken = (req, res, next) => {
   if (
@@ -16,7 +16,7 @@ checkIfAuthenticated = (req, res, next) => {
   getAuthToken(req, res, async () => {
     try {
       const { authToken } = req;
-      const userInfo = await admin.auth().verifyIdToken(authToken);
+      const userInfo = await auth().verifyIdToken(authToken);
       req.authId = userInfo.uid;
       return next();
     } catch (e) {
@@ -31,7 +31,7 @@ checkIfAdmin = (req, res, next) => {
   getAuthToken(req, res, async () => {
     try {
       const { authToken } = req;
-      const userInfo = await admin.auth().verifyIdToken(authToken);
+      const userInfo = await auth().verifyIdToken(authToken);
 
       if (userInfo.admin === true) {
         req.authId = userInfo.uid;
@@ -51,7 +51,7 @@ checkIfAuthenticatedId = (req, res, next) => {
   getAuthToken(req, res, async () => {
     try {
       const { authToken } = req;
-      const userInfo = await admin.auth().verifyIdToken(authToken);
+      const userInfo = await auth().verifyIdToken(authToken);
       req.authId = userInfo.uid;
       if (userInfo.uid === req.params.id) {
         return next();
@@ -68,7 +68,7 @@ checkIfAuthenticatedId = (req, res, next) => {
   });
 };
 
-module.exports = {
+export default {
   checkIfAuthenticated,
   checkIfAdmin,
   checkIfAuthenticatedId,

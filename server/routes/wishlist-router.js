@@ -1,17 +1,17 @@
-const express = require("express");
+import { Router } from "express";
 
-const auth = require("../middlewares/auth-middleware");
+import { checkIfAuthenticatedId } from "../middlewares/auth-middleware";
 
-const WishlistCtrl = require("../controllers/wishlist-ctrl");
+import { createWishlist, getWishlistById, updateWishlist } from "../controllers/wishlist-ctrl";
 
-const router = express.Router();
+const router = Router();
 
-router.post("/wishlist", WishlistCtrl.createWishlist);
-router.get("/wishlist/:id", WishlistCtrl.getWishlistById);
+router.post("/wishlist", createWishlist);
+router.get("/wishlist/:id", getWishlistById);
 router.put(
   "/wishlist/:id",
-  auth.checkIfAuthenticatedId,
-  WishlistCtrl.updateWishlist
+  checkIfAuthenticatedId,
+  updateWishlist
 );
 
-module.exports = router;
+export default router;

@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema as _Schema, model } from "mongoose";
+const Schema = _Schema;
 
 const Wishlist = new Schema(
   {
     _id: { type: String, required: true },
     items: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Item", required: true },
+      { type: _Schema.Types.ObjectId, ref: "Item", required: true },
     ],
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Wishlist", Wishlist, "wishlists");
+export default model("Wishlist", Wishlist, "wishlists");

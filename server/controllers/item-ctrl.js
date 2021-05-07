@@ -1,4 +1,4 @@
-const Item = require("../models/item-model");
+import Item, { findOne, findOneAndDelete, find } from "../models/item-model";
 
 createItem = (req, res) => {
   const body = req.body;
@@ -43,7 +43,7 @@ updateItem = async (req, res) => {
     });
   }
 
-  Item.findOne({ _id: req.params.id }, (err, item) => {
+  findOne({ _id: req.params.id }, (err, item) => {
     if (err) {
       return res.status(404).json({
         err,
@@ -72,7 +72,7 @@ updateItem = async (req, res) => {
 };
 
 deleteItem = async (req, res) => {
-  await Item.findOneAndDelete({ _id: req.params.id }, (err, item) => {
+  await findOneAndDelete({ _id: req.params.id }, (err, item) => {
     if (err) {
       return res.status(400).json({ success: false, error: err });
     }
@@ -86,7 +86,7 @@ deleteItem = async (req, res) => {
 };
 
 getItemById = async (req, res) => {
-  await Item.findOne({ _id: req.params.id }, (err, item) => {
+  await findOne({ _id: req.params.id }, (err, item) => {
     if (err) {
       return res.status(400).json({ success: false, error: err });
     }
@@ -99,7 +99,7 @@ getItemById = async (req, res) => {
 };
 
 getItems = async (req, res) => {
-  await Item.find({}, (err, items) => {
+  await find({}, (err, items) => {
     if (err) {
       return res.status(400).json({ success: false, error: err });
     }
@@ -110,7 +110,7 @@ getItems = async (req, res) => {
   }).catch((err) => console.log(err));
 };
 
-module.exports = {
+export default {
   createItem,
   updateItem,
   deleteItem,

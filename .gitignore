@@ -103,9 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
+# Store
+.DS_Store
+
 #Private
-production.env
-local.env
-client/config/dev.env
-dev.json
-production.json
+config/
+credentials/

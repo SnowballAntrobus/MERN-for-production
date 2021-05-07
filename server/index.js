@@ -1,21 +1,20 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import express, { urlencoded, json } from "express";
+import cors from "cors";
 require("dotenv").config();
 
-const db = require("./db");
+import { on } from "./db";
 
-const itemRouter = require("./routes/item-router");
-const wishlistRouter = require("./routes/wishlist-router");
+import itemRouter from "./routes/item-router";
+import wishlistRouter from "./routes/wishlist-router";
 
 const app = express();
 const apiPort = 5000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(urlencoded({ extended: true }));
 app.use(cors());
-app.use(bodyParser.json());
+app.use(json());
 
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+on("error", console.error.bind(console, "MongoDB connection error:"));
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Server!");

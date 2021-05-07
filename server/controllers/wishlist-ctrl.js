@@ -1,4 +1,4 @@
-const Wishlist = require("../models/wishlist-model");
+import Wishlist, { findOne } from "../models/wishlist-model";
 
 createWishlist = (req, res) => {
   const body = req.body;
@@ -34,7 +34,7 @@ createWishlist = (req, res) => {
 };
 
 getWishlistById = async (req, res) => {
-  await Wishlist.findOne({ _id: req.params.id }, (err, wishlist) => {
+  await findOne({ _id: req.params.id }, (err, wishlist) => {
     if (err) {
       return res.status(400).json({ success: false, error: err });
     }
@@ -60,7 +60,7 @@ updateWishlist = async (req, res) => {
     });
   }
 
-  Wishlist.findOne({ _id: req.params.id }, (err, wishlist) => {
+  findOne({ _id: req.params.id }, (err, wishlist) => {
     if (err) {
       return res.status(404).json({
         err,
@@ -86,7 +86,7 @@ updateWishlist = async (req, res) => {
   });
 };
 
-module.exports = {
+export default {
   createWishlist,
   getWishlistById,
   updateWishlist,
